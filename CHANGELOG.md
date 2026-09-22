@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+- Publish the version manifest as a release asset so Foundry can reliably detect updates from a stable release URL.
+
 ## 1.1.0
 - Added seven lightweight, theme-specific notification sounds.
 - Added a per-client sound selector; manual selection overrides automatic theme matching.
