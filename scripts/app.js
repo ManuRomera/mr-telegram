@@ -1,6 +1,6 @@
 import { MODULE_ID, FLAG_KEY, THEMES, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE } from "./constants.js";
 import { LocalStore } from "./storage.js";
-import { getThemeName, getCustomTheme } from "./settings.js";
+import { getThemeName, getCustomTheme, getNotificationSound } from "./settings.js";
 import { attachmentFromDrop, claimItem, openDocument } from "./attachments.js";
 import { MausritterAdapter } from "./adapters/mausritter.js";
 
@@ -13,12 +13,11 @@ export class TelegramApp {
     this.index=index; this.messages=messages; this.rolls=rolls; this.root=null; this.launcher=null; this.selectedPlayerId=null; this.loaded=0; this.reply=null; this.readTimes={}; this.liveReads=new Map(); this.saveReadTimer=null;
   }
   t(k,d={}) { return game.i18n.format(k,d); }
-  playSound() {
+  async playSound() {
     if (!game.settings.get(MODULE_ID,"sound")) return;
     try {
-      const AC=window.AudioContext||window.webkitAudioContext; if(!AC)return; const c=new AC(),master=c.createGain(); master.gain.value=.035; master.connect(c.destination);
-      const ping=(hz,start,dur)=>{const o=c.createOscillator(),g=c.createGain();o.type="triangle";o.frequency.value=hz;g.gain.setValueAtTime(.001,c.currentTime+start);g.gain.exponentialRampToValueAtTime(1,c.currentTime+start+.008);g.gain.exponentialRampToValueAtTime(.001,c.currentTime+start+dur);o.connect(g);g.connect(master);o.start(c.currentTime+start);o.stop(c.currentTime+start+dur+.02);};
-      ping(880,0,.055);ping(660,.085,.07);setTimeout(()=>c.close().catch(()=>{}),300);
+      const { src } = getNotificationSound();
+      foundry.audio.AudioHelper.play({ src, volume: 0.8, autoplay: true, loop: false, channel: "interface" }, false);
     } catch {}
   }
   channelId() { const id=game.user.isGM?this.selectedPlayerId:game.user.id; return id?this.messages.channelId(id):null; }

@@ -17,7 +17,7 @@ Hooks.once("init",()=>{
 Hooks.once("ready",async()=>{
   index=new MessageIndex(); index.build(); messages=new MessageService(index); rolls=new RollService(index,messages); app=new TelegramApp(index,messages,rolls); await app.loadReadState(); app.ensureLauncher();
   game.socket.on(`module.${MODULE_ID}`,payload=>{if(payload?.type==="read")app.onRead(payload);});
-  globalThis.MRTelegram={open:()=>app.open(),close:()=>app.close(),app,index,messages,rolls,version:"1.0.0"};
+  globalThis.MRTelegram={open:()=>app.open(),close:()=>app.close(),app,index,messages,rolls,version:"1.1.0"};
   if(game.user.isGM){const r=await importLegacyR8();if(r.imported){index.build();ui.notifications.info(game.i18n.format("MRTelegram.LegacyImported",{count:r.imported}));}await rolls.processPending();}
   if(game.settings.get(MODULE_ID,"autoOpen")) app.open();
 });

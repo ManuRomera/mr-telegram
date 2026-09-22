@@ -1,4 +1,4 @@
-import { MODULE_ID, THEMES } from "./constants.js";
+import { MODULE_ID, THEMES, NOTIFICATION_SOUNDS } from "./constants.js";
 
 export function registerSettings() {
   game.settings.register(MODULE_ID, "worldTheme", {
@@ -21,6 +21,14 @@ export function registerSettings() {
   game.settings.register(MODULE_ID, "sound", {
     name: "MRTelegram.Settings.Sound.Name", hint: "MRTelegram.Settings.Sound.Hint",
     scope: "client", config: true, type: Boolean, default: true
+  });
+  game.settings.register(MODULE_ID, "notificationSound", {
+    name: "MRTelegram.Settings.NotificationSound.Name", hint: "MRTelegram.Settings.NotificationSound.Hint",
+    scope: "client", config: true, type: String, default: "auto",
+    choices: {
+      auto: game.i18n.localize("MRTelegram.Sound.Auto"),
+      ...Object.fromEntries(Object.entries(NOTIFICATION_SOUNDS).map(([key, value]) => [key, game.i18n.localize(value.label)]))
+    }
   });
   game.settings.register(MODULE_ID, "textScale", {
     name: "MRTelegram.Settings.TextScale.Name", hint: "MRTelegram.Settings.TextScale.Hint",
@@ -50,4 +58,11 @@ export function getThemeName() {
 export function getCustomTheme() {
   try { return JSON.parse(game.settings.get(MODULE_ID, "customTheme") || "{}"); }
   catch { return {}; }
+}
+
+export function getNotificationSound() {
+  const selected = game.settings.get(MODULE_ID, "notificationSound");
+  const themeName = getThemeName();
+  const automatic = themeName === "custom" ? "modern" : THEMES[themeName]?.sound ?? "modern";
+  return NOTIFICATION_SOUNDS[selected === "auto" ? automatic : selected] ?? NOTIFICATION_SOUNDS.modern;
 }

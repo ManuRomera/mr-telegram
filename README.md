@@ -22,6 +22,7 @@ M.R.- Telegram turns the former “The Rateful Eight · Private Telegraph v7” 
 - Window position and size memory.
 - Accessibility: A/A+/A++, high contrast, reading mode and reduced motion.
 - Themes: Modern messenger, 1920s telegram, Letter, Green phosphor terminal, Amber terminal, Noir, Clean light and a custom theme editor.
+- Seven lightweight CC0 notification sounds, selected automatically by theme or manually per user, played through Foundry's Interface audio channel.
 - One module for Foundry v13 and v14.
 - Spanish and English localization through `lang/es.json` and `lang/en.json`.
 - One-time import of the old `world.r8SecretCommsV3` message flags when a GM first enables the module.
@@ -47,6 +48,7 @@ Copy the `mr-telegram` folder into `Data/modules/`, restart Foundry, enable **M.
 - Memoria de posición y tamaño de ventana.
 - Accesibilidad: A/A+/A++, alto contraste, lectura máxima y reducción de movimiento.
 - Diseños: mensajería moderna, telegrama años 20, carta, fósforo verde, terminal ámbar, noir, claro y editor de tema personalizado.
+- Siete avisos sonoros CC0 ligeros, elegidos automáticamente según el diseño o manualmente por cada usuario y reproducidos por el canal Interfaz de Foundry.
 - Un solo módulo para Foundry v13 y v14.
 - Español e inglés mediante `lang/es.json` y `lang/en.json`.
 - Importación única del historial antiguo marcado con `world.r8SecretCommsV3` cuando el GM activa el módulo por primera vez.
