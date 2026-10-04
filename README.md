@@ -1,5 +1,12 @@
 # M.R.- Telegram
 
+<p align="center">
+  <a href="https://github.com/ManuRomera/mr-telegram/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/ManuRomera/mr-telegram?include_prereleases&style=for-the-badge&color=2a9d8f&label=release"></a>
+  <a href="https://foundryvtt.com"><img alt="Foundry VTT V13 – V14" src="https://img.shields.io/badge/Foundry%20VTT-V13%20%E2%80%93%20V14-57d8c8?style=for-the-badge"></a>
+  <a href="https://github.com/ManuRomera/mr-telegram/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/ManuRomera/mr-telegram/total?style=for-the-badge&color=ff7a1f"></a>
+  <img alt="System" src="https://img.shields.io/badge/system-agnostic-2b3245?style=for-the-badge">
+</p>
+
 **Foundry VTT v13 + v14 · System agnostic · Español / English**
 
 M.R.- Telegram turns the former “The Rateful Eight · Private Telegraph v7” macro into an always-on Foundry module designed for any game system.
