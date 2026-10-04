@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/img/banner.png" alt="M.R.- Telegram · Mensajería privada para cualquier sistema de Foundry VTT" width="100%">
+</p>
+
 # M.R.- Telegram
 
 <p align="center">
@@ -10,6 +14,11 @@
 **Foundry VTT v13 + v14 · System agnostic · Español / English**
 
 M.R.- Telegram turns the former “The Rateful Eight · Private Telegraph v7” macro into an always-on Foundry module designed for any game system.
+
+<p align="center">
+  <img src="docs/img/hilo.png" alt="Conversación privada entre el GM y un jugador" width="58%">
+  <img src="docs/img/tirada-secreta.png" alt="Diálogo de tirada secreta con fórmula, resolución y objetivo" width="40%">
+</p>
 
 ## English
 
