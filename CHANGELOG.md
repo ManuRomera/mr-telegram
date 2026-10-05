@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Añadido el botón «Créditos» en los ajustes del paquete (Manu Romera · Digital RPG Design). No cambia el juego.
+
 ## 1.1.1
 - Publish the version manifest as a release asset so Foundry can reliably detect updates from a stable release URL.
 
