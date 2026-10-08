@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/img/banner.png" alt="M.R.- Telegram · Mensajería privada para cualquier sistema de Foundry VTT" width="100%">
+  <img src="docs/img/banner.png" alt="MR- Telegram · Mensajería privada para cualquier sistema de Foundry VTT" width="100%">
 </p>
 
-# M.R.- Telegram
+# MR- Telegram
 
 <p align="center">
   <a href="https://github.com/ManuRomera/mr-telegram/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/ManuRomera/mr-telegram?include_prereleases&style=for-the-badge&color=2a9d8f&label=release"></a>
@@ -13,7 +13,7 @@
 
 **Foundry VTT v13 + v14 · System agnostic · Español / English**
 
-M.R.- Telegram turns the former “The Rateful Eight · Private Telegraph v7” macro into an always-on Foundry module designed for any game system.
+MR- Telegram turns the former “The Rateful Eight · Private Telegraph v7” macro into an always-on Foundry module designed for any game system.
 
 <p align="center">
   <img src="docs/img/hilo.png" alt="Conversación privada entre el GM y un jugador" width="58%">
@@ -44,7 +44,7 @@ M.R.- Telegram turns the former “The Rateful Eight · Private Telegraph v7” 
 - One-time import of the old `world.r8SecretCommsV3` message flags when a GM first enables the module.
 
 ### Install
-Copy the `mr-telegram` folder into `Data/modules/`, restart Foundry, enable **M.R.- Telegram** in Manage Modules, then open it from the floating envelope button or with **Ctrl+Shift+M**.
+Copy the `mr-telegram` folder into `Data/modules/`, restart Foundry, enable **MR- Telegram** in Manage Modules, then open it from the floating envelope button or with **Ctrl+Shift+M**.
 
 ## Español
 
@@ -70,7 +70,7 @@ Copy the `mr-telegram` folder into `Data/modules/`, restart Foundry, enable **M.
 - Importación única del historial antiguo marcado con `world.r8SecretCommsV3` cuando el GM activa el módulo por primera vez.
 
 ### Instalación
-Copia la carpeta `mr-telegram` en `Data/modules/`, reinicia Foundry, activa **M.R.- Telegram** en Administrar módulos y ábrelo con el botón flotante del sobre o **Ctrl+Shift+M**.
+Copia la carpeta `mr-telegram` en `Data/modules/`, reinicia Foundry, activa **MR- Telegram** en Administrar módulos y ábrelo con el botón flotante del sobre o **Ctrl+Shift+M**.
 
 ## Manifest
 `https://raw.githubusercontent.com/ManuRomera/mr-telegram/main/module.json`

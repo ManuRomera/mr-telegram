@@ -11,6 +11,7 @@ export const THEMES = {
     label: "MRTelegram.Theme.Modern",
     sound: "modern",
     vars: {
+      "--mrt-in-text": "#e9edef", "--mrt-out-text": "#e9edef", "--mrt-on-accent": "#04231c",
       "--mrt-bg": "#0b141a", "--mrt-panel": "#111b21", "--mrt-panel-2": "#202c33",
       "--mrt-text": "#e9edef", "--mrt-muted": "#8696a0", "--mrt-accent": "#00a884",
       "--mrt-incoming": "#202c33", "--mrt-outgoing": "#005c4b", "--mrt-border": "#2a3942",
@@ -21,6 +22,7 @@ export const THEMES = {
     label: "MRTelegram.Theme.Telegram1920",
     sound: "telegram1920",
     vars: {
+      "--mrt-in-text": "#2a1a0c", "--mrt-out-text": "#f6e6c8", "--mrt-on-accent": "#1b120c",
       "--mrt-bg": "#1b120c", "--mrt-panel": "#25170f", "--mrt-panel-2": "#3a2517",
       "--mrt-text": "#f0dfbf", "--mrt-muted": "#b79c76", "--mrt-accent": "#c98a3c",
       "--mrt-incoming": "#ead9b4", "--mrt-outgoing": "#6b2b18", "--mrt-border": "#7b5633",
@@ -32,7 +34,8 @@ export const THEMES = {
     label: "MRTelegram.Theme.Letter",
     sound: "letter",
     vars: {
-      "--mrt-bg": "#8b7556", "--mrt-panel": "#e7d7b5", "--mrt-panel-2": "#d7c39a",
+      "--mrt-in-text": "#2b2115", "--mrt-out-text": "#2b2115", "--mrt-on-accent": "#ffffff",
+      "--mrt-bg": "#a89070", "--mrt-panel": "#e7d7b5", "--mrt-panel-2": "#d7c39a",
       "--mrt-text": "#2b2115", "--mrt-muted": "#6f5a3f", "--mrt-accent": "#7f2f26",
       "--mrt-incoming": "#f4ead2", "--mrt-outgoing": "#d7c39a", "--mrt-border": "#927b58",
       "--mrt-font": "Georgia, 'Times New Roman', serif", "--mrt-radius": "2px",
@@ -43,6 +46,7 @@ export const THEMES = {
     label: "MRTelegram.Theme.Phosphor",
     sound: "phosphor",
     vars: {
+      "--mrt-in-text": "#7cff8b", "--mrt-out-text": "#a7ffb0", "--mrt-on-accent": "#021004",
       "--mrt-bg": "#020603", "--mrt-panel": "#031006", "--mrt-panel-2": "#071b0b",
       "--mrt-text": "#7cff8b", "--mrt-muted": "#3fae50", "--mrt-accent": "#a7ffb0",
       "--mrt-incoming": "#071b0b", "--mrt-outgoing": "#0c2b12", "--mrt-border": "#2f7f3e",
@@ -54,6 +58,7 @@ export const THEMES = {
     label: "MRTelegram.Theme.Amber",
     sound: "amber",
     vars: {
+      "--mrt-in-text": "#ffbd55", "--mrt-out-text": "#ffd27a", "--mrt-on-accent": "#1a1000",
       "--mrt-bg": "#080500", "--mrt-panel": "#130d02", "--mrt-panel-2": "#211704",
       "--mrt-text": "#ffbd55", "--mrt-muted": "#c0782c", "--mrt-accent": "#ffd27a",
       "--mrt-incoming": "#241705", "--mrt-outgoing": "#3a2507", "--mrt-border": "#8d5c1e",
@@ -65,6 +70,7 @@ export const THEMES = {
     label: "MRTelegram.Theme.Noir",
     sound: "noir",
     vars: {
+      "--mrt-in-text": "#161616", "--mrt-out-text": "#ededed", "--mrt-on-accent": "#111111",
       "--mrt-bg": "#070707", "--mrt-panel": "#101010", "--mrt-panel-2": "#191919",
       "--mrt-text": "#ededed", "--mrt-muted": "#9b9b9b", "--mrt-accent": "#d7b15b",
       "--mrt-incoming": "#e8e8e8", "--mrt-outgoing": "#242424", "--mrt-border": "#4a4a4a",
@@ -76,6 +82,7 @@ export const THEMES = {
     label: "MRTelegram.Theme.Clean",
     sound: "clean",
     vars: {
+      "--mrt-in-text": "#20252b", "--mrt-out-text": "#20252b", "--mrt-on-accent": "#ffffff",
       "--mrt-bg": "#eef1f4", "--mrt-panel": "#ffffff", "--mrt-panel-2": "#f5f7f9",
       "--mrt-text": "#20252b", "--mrt-muted": "#68717b", "--mrt-accent": "#406bd8",
       "--mrt-incoming": "#ffffff", "--mrt-outgoing": "#dfe8ff", "--mrt-border": "#ccd3da",
