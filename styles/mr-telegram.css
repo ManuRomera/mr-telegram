@@ -380,3 +380,9 @@
   .mrt-bubble { max-width: 88%; }
   .mrt-head-actions button:not([data-act="roll"]):not([data-act="notes"]):not([data-act="clear"]) { display: none; }
 }
+
+/* Elección al arrastrar un documento */
+.mrt-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mrt-choice button { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; margin: 0; padding: 12px 14px; border-radius: 12px; text-align: left; }
+.mrt-choice button small { font-weight: 400; font-size: 11.5px; opacity: .85; }
+.mrt-choice button[disabled] { opacity: .4; cursor: not-allowed; }

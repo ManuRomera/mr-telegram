@@ -131,5 +131,12 @@
   "MRTelegram.Var.incoming": "Incoming message",
   "MRTelegram.Var.outgoing": "Outgoing message",
   "MRTelegram.Var.in-text": "Incoming text",
-  "MRTelegram.Var.out-text": "Outgoing text"
+  "MRTelegram.Var.out-text": "Outgoing text",
+  "MRTelegram.AttachChoose": "What do you want to send?",
+  "MRTelegram.AttachImage": "Image only",
+  "MRTelegram.AttachImageHint": "They see it, no sheet or data.",
+  "MRTelegram.AttachFull": "Hand over in full",
+  "MRTelegram.AttachFullHint": "They can open the sheet, drag it to theirs or claim it.",
+  "MRTelegram.AttachShared": "{player} can now see «{name}» (observer permission).",
+  "MRTelegram.DragToSheet": "Drag onto a sheet"
 }

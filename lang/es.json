@@ -131,5 +131,12 @@
   "MRTelegram.Var.incoming": "Mensaje recibido",
   "MRTelegram.Var.outgoing": "Mensaje enviado",
   "MRTelegram.Var.in-text": "Texto recibido",
-  "MRTelegram.Var.out-text": "Texto enviado"
+  "MRTelegram.Var.out-text": "Texto enviado",
+  "MRTelegram.AttachChoose": "¿Qué quieres enviar?",
+  "MRTelegram.AttachImage": "Solo la imagen",
+  "MRTelegram.AttachImageHint": "La verá, sin ficha ni datos.",
+  "MRTelegram.AttachFull": "Entregar completo",
+  "MRTelegram.AttachFullHint": "Podrá abrir la ficha, arrastrarlo a la suya o recogerlo.",
+  "MRTelegram.AttachShared": "{player} ya puede ver «{name}» (permiso de observador).",
+  "MRTelegram.DragToSheet": "Arrastra a una ficha"
 }

@@ -100,7 +100,8 @@ export class TelegramApp {
     this.root.addEventListener("input",e=>{if(e.target?.matches(".mrt-input")){LocalStore.setDraft(this.channelId(),e.target.value);}});
     this.root.addEventListener("dragover",e=>{if(e.target.closest(".mrt-main")){e.preventDefault();this.root.querySelector(".mrt-drop")?.classList.add("hot");}});
     this.root.addEventListener("dragleave",e=>{if(!this.root.contains(e.relatedTarget))this.root.querySelector(".mrt-drop")?.classList.remove("hot");});
-    this.root.addEventListener("drop",async e=>{if(!e.target.closest(".mrt-main"))return;e.preventDefault();this.root.querySelector(".mrt-drop")?.classList.remove("hot");try{const a=await attachmentFromDrop(e);await this.messages.sendAttachment(this.currentPlayer().id,a);}catch(err){ui.notifications.warn(this.t(`MRTelegram.Errors.${err.message==="too-large"?"ImageTooLarge":"Drop"}`));}});
+    this.root.addEventListener("drop",async e=>{if(!e.target.closest(".mrt-main"))return;e.preventDefault();this.root.querySelector(".mrt-drop")?.classList.remove("hot");try{const a=await this.chooseAttachment(await attachmentFromDrop(e));if(a)await this.messages.sendAttachment(this.currentPlayer().id,a);}catch(err){ui.notifications.warn(this.t(`MRTelegram.Errors.${err.message==="too-large"?"ImageTooLarge":"Drop"}`));}});
+    this.root.addEventListener("dragstart",e=>{const row=e.target.closest?.(".mrt-row[data-mid]");const a=row&&fOf(this.index.byId.get(row.dataset.mid))?.attachment;if(a?.uuid){e.dataTransfer.setData("text/plain",JSON.stringify({type:a.documentType,uuid:a.uuid}));e.dataTransfer.effectAllowed="copy";}});
     this.bindDrag(); let t=0; new ResizeObserver(()=>{clearTimeout(t);t=setTimeout(()=>this.saveWindow(),250);}).observe(this.root);
   }
   bindDrag(){const h=this.root.querySelector(".mrt-top");let drag=false,sx=0,sy=0,sl=0,st=0;h.addEventListener("pointerdown",e=>{if(e.target.closest("button"))return;drag=true;const r=this.root.getBoundingClientRect();sx=e.clientX;sy=e.clientY;sl=r.left;st=r.top;h.setPointerCapture?.(e.pointerId);});h.addEventListener("pointermove",e=>{if(!drag)return;this.root.style.left=`${Math.max(0,Math.min(innerWidth-this.root.offsetWidth,sl+e.clientX-sx))}px`;this.root.style.top=`${Math.max(0,Math.min(innerHeight-50,st+e.clientY-sy))}px`;});const stop=()=>{if(drag){drag=false;this.saveWindow();}};h.addEventListener("pointerup",stop);h.addEventListener("pointercancel",stop);}
@@ -136,9 +137,26 @@ export class TelegramApp {
     else if(f.kind==="attachment-claim")body=`${head("fa-suitcase",this.t("MRTelegram.Claimed"))}<p>${esc(f.itemName)} → ${esc(f.actorName)}</p>`;
     else return"";
     const cont=prev&&fOf(prev)?.senderId===f.senderId&&time(m)-time(prev)<3e5?"cont":"";
-    return `<article class="mrt-row ${mine?"me":"them"} ${f.pinned?"pinned":""} ${cont} ${card?"card":""} ${m.id===this.freshId?"fresh":""}" data-mid="${m.id}" data-kind="${f.kind}"><div class="mrt-bubble">${body}<small class="mrt-meta">${this.metaHTML(m)}</small></div>${this.msgTools(m)}</article>`;
+    return `<article class="mrt-row ${mine?"me":"them"} ${f.pinned?"pinned":""} ${cont} ${card?"card":""} ${m.id===this.freshId?"fresh":""}" data-mid="${m.id}" data-kind="${f.kind}"><div class="mrt-bubble" ${f.attachment?.uuid?`draggable="true" title="${esc(this.t("MRTelegram.DragToSheet"))}"`:""}>${body}<small class="mrt-meta">${this.metaHTML(m)}</small></div>${this.msgTools(m)}</article>`;
   }
   renderCompose(){const box=this.root?.querySelector(".mrt-compose");if(!box)return;const ch=this.channelId();if(!ch){box.innerHTML="";return;}const draft=LocalStore.getDraft(ch),reply=LocalStore.getReply(ch);box.innerHTML=`${reply?`<div class="mrt-replybar"><span><b>${esc(reply.senderName)}</b> · ${esc(reply.text)}</span><button type="button" data-act="cancel-reply" aria-label="${esc(this.t("MRTelegram.Cancel"))}"><i class="fas fa-times" aria-hidden="true"></i></button></div>`:""}<div class="mrt-drop"><i class="fas fa-paperclip" aria-hidden="true"></i> ${esc(this.t("MRTelegram.DropHint"))}</div><div class="mrt-inputrow"><textarea class="mrt-input" rows="1" aria-label="${esc(this.t("MRTelegram.Placeholder"))}" placeholder="${esc(this.t("MRTelegram.Placeholder"))}">${esc(draft)}</textarea><button type="button" class="mrt-send" data-act="send" title="${esc(this.t("MRTelegram.Send"))}" aria-label="${esc(this.t("MRTelegram.Send"))}"><i class="fas fa-paper-plane" aria-hidden="true"></i></button></div>`;}
+  async chooseAttachment(a){
+    if(a?.kind!=="document"||!game.user.isGM)return a;
+    return new Promise(resolve=>{
+      const w=this.modal(`<h2>${esc(a.name)}</h2><p>${esc(this.t("MRTelegram.AttachChoose"))}</p><div class="mrt-choice"><button type="button" class="mrt-primary" data-pick="image" ${a.img?"":"disabled"}><i class="fas fa-image" aria-hidden="true"></i> ${esc(this.t("MRTelegram.AttachImage"))}<small>${esc(this.t("MRTelegram.AttachImageHint"))}</small></button><button type="button" class="mrt-primary" data-pick="full"><i class="fas fa-box-open" aria-hidden="true"></i> ${esc(this.t("MRTelegram.AttachFull"))}<small>${esc(this.t("MRTelegram.AttachFullHint"))}</small></button></div>`);
+      let done=false; const end=v=>{if(done)return;done=true;obs.disconnect();resolve(v);};
+      const obs=new MutationObserver(()=>{if(!w.isConnected)end(null);}); obs.observe(this.root,{childList:true});
+      for(const b of w.querySelectorAll("[data-pick]"))b.addEventListener("click",async()=>{
+        if(b.dataset.pick==="image"){end({id:a.id,kind:"image",name:a.name,src:a.img});}
+        else{
+          const doc=await fromUuid(a.uuid).catch(()=>null),p=this.currentPlayer();
+          if(doc&&p&&!doc.pack&&!doc.parent&&doc.testUserPermission&&!doc.testUserPermission(p,"OBSERVER")){try{await doc.update({[`ownership.${p.id}`]:CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER});ui.notifications.info(this.t("MRTelegram.AttachShared",{name:doc.name,player:p.name}));}catch{}}
+          end(a);
+        }
+        w.remove();
+      });
+    });
+  }
   async sendCurrent(){const input=this.root?.querySelector(".mrt-input");const text=input?.value??"";const p=this.currentPlayer();if(!p||!String(text).trim())return;const ch=this.channelId();const reply=LocalStore.getReply(ch);input.value="";LocalStore.clearDraft(ch);LocalStore.setReply(ch,null);this.renderCompose();try{await this.messages.sendText(p.id,text,reply);}catch(e){LocalStore.setDraft(ch,text);this.renderCompose();throw e;}}
   async onClick(e){const p=e.target.closest("[data-player]");if(p&&game.user.isGM){this.selectedPlayerId=p.dataset.player;this.loaded=0;this.renderAll();return;}const b=e.target.closest("[data-act]");if(!b)return;const a=b.dataset.act;
     if(a==="close")return this.close(); if(a==="send")return this.sendCurrent(); if(a==="older"){this.loaded+=this.pageSize();return this.renderThread({preserveScroll:true});}

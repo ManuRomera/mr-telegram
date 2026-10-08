@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Al arrastrar un actor, objeto u otro documento, la Dirección elige entre **solo la imagen** (la ve, sin ficha ni datos) o **entregar completo**. Completo da permiso de observador al jugador sobre el documento del mundo para que pueda abrir su ficha, y los objetos se pueden recoger o arrastrar desde el mensaje a una ficha.
+
 ## 1.2.0
 
 Rediseño visual completo y auditoría de errores.

@@ -2,7 +2,7 @@
   "id": "mr-telegram",
   "title": "MR- Telegram",
   "description": "System-agnostic private messaging for Foundry VTT with concurrent typing, persistent drafts, themes, accessibility, attachments, secret rolls and GM tools.",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "authors": [{"name": "Manu Romera"}],
   "compatibility": {"minimum": "13", "verified": "14"},
   "esmodules": ["scripts/main.js", "scripts/mr-credits.mjs"],
