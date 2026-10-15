@@ -100,3 +100,6 @@ export const NOTIFICATION_SOUNDS = {
   noir: { label: "MRTelegram.Sound.Noir", src: "modules/mr-telegram/sounds/noir.ogg" },
   clean: { label: "MRTelegram.Sound.Clean", src: "modules/mr-telegram/sounds/clean.ogg" }
 };
+
+// Un mensaje solo es "mío" si soy destinatario (o autor): los demás clientes pueden recibirlo pero no deben indexarlo ni avisar.
+export const isForMe=m=>{const w=m?.whisper??m?._source?.whisper??[];return w.includes(game.user.id)||(m?.author?.id??m?._source?.author)===game.user.id;};

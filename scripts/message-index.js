@@ -1,9 +1,9 @@
-import { MODULE_ID, FLAG_KEY, DATA_VERSION } from "./constants.js";
+import { MODULE_ID, FLAG_KEY, DATA_VERSION, isForMe } from "./constants.js";
 
 export class MessageIndex {
   constructor() { this.byId = new Map(); this.byChannel = new Map(); }
   flag(message) { try { return message.getFlag(MODULE_ID, FLAG_KEY); } catch { return null; } }
-  isOurs(message) { return this.flag(message)?.version === DATA_VERSION; }
+  isOurs(message) { return this.flag(message)?.version === DATA_VERSION && isForMe(message); }
   build() {
     this.byId.clear(); this.byChannel.clear();
     for (const m of game.messages.contents) if (this.isOurs(m)) this.add(m, false);

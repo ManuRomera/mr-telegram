@@ -28,13 +28,13 @@ export class TelegramApp {
   myRead(channelId) { return Number(this.readTimes[channelId]??this.readFlag(game.user,channelId))||0; }
   latestIncoming(channelId) { let latest=0; for(const m of this.index.messages(channelId,{visibleOnly:false})) { const f=fOf(m); if(f?.senderId && f.senderId!==game.user.id) latest=Math.max(latest,time(m)); } return latest; }
   unread(channelId) { const last=this.myRead(channelId); return this.index.messages(channelId).filter(m=>{const f=fOf(m);return f?.senderId!==game.user.id && time(m)>last;}).length; }
-  allUnread() { return this.players().reduce((n,p)=>n+this.unread(this.messages.channelId(p.id)),0); }
+  allUnread() { if(!game.user.isGM) return this.unread(this.messages.channelId(game.user.id)); return this.players().reduce((n,p)=>n+this.unread(this.messages.channelId(p.id)),0); }
   async loadReadState() { this.readTimes=foundry.utils.deepClone(game.user.getFlag(MODULE_ID,"reads")??{}); }
   markRead(channelId) {
     const latest=this.latestIncoming(channelId); if(!latest || latest<=this.myRead(channelId)) return;
     this.readTimes[channelId]=latest; clearTimeout(this.saveReadTimer);
     this.saveReadTimer=setTimeout(()=>game.user.setFlag(MODULE_ID,"reads",foundry.utils.deepClone(this.readTimes)).catch(()=>{}),500);
-    game.socket.emit(`module.${MODULE_ID}`,{type:"read",userId:game.user.id,channelId,timestamp:latest});
+    game.socket.emit(`module.${MODULE_ID}`,{type:"read",userId:game.user.id,channelId,timestamp:latest},{recipients:[...new Set([...this.messages.gmIds(),channelId.replace("player:","")])]});
   }
   receiptState(message) {
     const f=fOf(message); if(f?.senderId!==game.user.id) return "";

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.2
+
+- **Privacidad**: cada usuario solo indexa, cuenta y recibe avisos de los mensajes de los que es destinatario o autor. Los demás jugadores ya no ven la barra azul ni oyen el sonido cuando alguien escribe a la Dirección.
+- El contador del icono de un jugador cuenta solo su propia conversación (antes sumaba canales ajenos y no se limpiaba al leerlo todo).
+- Las marcas de lectura por socket se envían solo a la Dirección y al jugador de ese canal.
+
 ## 1.2.1
 
 - Al arrastrar un actor, objeto u otro documento, la Dirección elige entre **solo la imagen** (la ve, sin ficha ni datos) o **entregar completo**. Completo da permiso de observador al jugador sobre el documento del mundo para que pueda abrir su ficha, y los objetos se pueden recoger o arrastrar desde el mensaje a una ficha.
